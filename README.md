@@ -1,5 +1,5 @@
 # PhotochromicTub
-## An interactive project made for the Science museum of Jerusalem
+### An interactive project made for the Science museum of Jerusalem
 
 The Photochromic tub is an interactive project,
 consist of a large 'Aquarium', filled with special photochromic solution
