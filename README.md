@@ -7,7 +7,7 @@ and a 3D printer.
 A visitor may choose to control the system directly via the joystick interface, or 
 print Pre-prepared 3D drawings via designated push buttons.
 
-The project consist of 3 main parts:
+The project includes of 3 main parts:
 - The 3D printer (GRBL and motors).
 - The controller main script.
 - The joystick interface.
