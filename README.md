@@ -23,6 +23,7 @@ The printer consist of the following components:
 - Nema17 stepper motors (one for each axis) with matching rails.
 - UV Led (connecte to the PWM spindle port).
 - 3 limit switches
+- 12v/2A power supplier
 
 The Arduino is running the GRBL Library (https://github.com/cprezzi/grbl-servo)
 with the following minor changes:
