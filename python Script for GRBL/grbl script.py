@@ -85,6 +85,7 @@ def apply_led_toggle():
         GC_MOVE_COMMAND += " M3 S" + str(LED_POWER)
     else:
         GC_MOVE_COMMAND += " M3 S0"
+    time.sleep(0.2)
 
 
 def set_feed_rate(feed_rate):
@@ -189,9 +190,6 @@ print_menu()
 
 
 
-
-
-
 while True:
     keys = pygame.key.get_pressed()
     """ Case an error occurred: reset and auto home"""
@@ -207,10 +205,7 @@ while True:
         print_file("spiral.gcode", 4)
 
     if keys[K_0]:
-        response = printer_ser.write("$H\n".encode())
-        print(response)
-        response = printer_ser.write("G10 P0 L20 X0 Y0 Z0\n".encode())
-        print(response)
+        auto_home()
 
     if keys[K_l]:
         print_status()
