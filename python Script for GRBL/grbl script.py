@@ -180,7 +180,7 @@ def change_direction():
 printer_ser = serial.Serial('COM5', baudrate=115200, timeout=1)
 # Init UI screen
 pygame.init()
-screen = pygame.display.set_mode((800,600))
+screen = pygame.display.set_mode((0,0), pygame.RESIZABLE)
 clock = pygame.time.Clock()
 
 # print_file('initialize.gcode', 0.5)
