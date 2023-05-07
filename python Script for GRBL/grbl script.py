@@ -98,7 +98,7 @@ def send_move():
     # print(GC_MOVE_COMMAND)
     printer_ser.write(GC_MOVE_COMMAND.encode())
     response = printer_ser.readline().decode()
-    print(response)
+    # print(response)
     return response
 
 
@@ -180,7 +180,8 @@ def change_direction():
 printer_ser = serial.Serial('COM5', baudrate=115200, timeout=1)
 # Init UI screen
 pygame.init()
-screen = pygame.display.set_mode((0,0), pygame.RESIZABLE)
+# screen = pygame.display.set_mode((0,0), pygame.RESIZABLE)
+screen = pygame.display.set_mode((800, 600))
 clock = pygame.time.Clock()
 
 # print_file('initialize.gcode', 0.5)
@@ -191,6 +192,8 @@ print_menu()
 
 
 while True:
+    test = time.time()
+
     keys = pygame.key.get_pressed()
     """ Case an error occurred: reset and auto home"""
     if keys[K_b]:
@@ -258,6 +261,7 @@ while True:
         PREV_MOVEMENT_VECTOR[Z_INDEX] = MOVEMENT_VECTOR[Z_INDEX]
         MOVEMENT_VECTOR = [0, 0, 0]
         joystick_idle = True
+        print(time.time() - test)
 
 
 
@@ -268,7 +272,7 @@ while True:
     elif joystick_idle:
         PREV_MOVEMENT_VECTOR = [0, 0, 0]
         joystick_idle = False
-        time.sleep(0.01)
+        # time.sleep(0.01)
         clear_commands_queue()
         print_full_response()
 

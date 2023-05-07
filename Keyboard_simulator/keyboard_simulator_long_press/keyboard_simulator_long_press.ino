@@ -6,6 +6,11 @@
 #define Y_BACK 5
 #define FIRST_PRESS_DELAY 3
 
+#define RED_BUTTON A0
+#define BLUE_BUTTON A1
+#define GREEN_BUTTON A2
+
+
 /** DIRECTIONS KEYS*/
 const char FORWARD_KEY = 'w';
 const char BACK_KEY = 's';
@@ -21,6 +26,10 @@ void setup() {
   pinMode(X_LEFT, INPUT_PULLUP);
   pinMode(Y_FRONT, INPUT_PULLUP);
   pinMode(Y_BACK, INPUT_PULLUP);
+
+  pinMode(RED_BUTTON, INPUT_PULLUP);
+  pinMode(BLUE_BUTTON, INPUT_PULLUP);
+  pinMode(GREEN_BUTTON, INPUT_PULLUP);
 
 }
 bool is_right_pressed = false;
@@ -40,6 +49,7 @@ void loop() {
      else if(digitalRead(X_RIGHT) == HIGH and is_right_pressed){
         is_right_pressed = !is_right_pressed;
         Keyboard.release(RIGHT_KEY);
+        Serial.println("right");
       }
       
       /* move left */
@@ -51,6 +61,7 @@ void loop() {
      else if(digitalRead(X_LEFT) == HIGH and is_left_pressed){
         is_left_pressed = !is_left_pressed;
         Keyboard.release(LEFT_KEY);
+        Serial.println("left");
       }
 
       /* move front */
@@ -58,6 +69,7 @@ void loop() {
         is_fornt_pressed = !is_fornt_pressed;
         Keyboard.press(FORWARD_KEY);
         delay(FIRST_PRESS_DELAY);
+        Serial.println("front");
       }
      else if(digitalRead(Y_FRONT) == HIGH and is_fornt_pressed){
         is_fornt_pressed = !is_fornt_pressed;
@@ -69,9 +81,25 @@ void loop() {
         is_back_pressed = !is_back_pressed;
         Keyboard.press(BACK_KEY);
         delay(FIRST_PRESS_DELAY);
+        Serial.println("back");
       }
      else if(digitalRead(Y_BACK) == HIGH and is_back_pressed){
         is_back_pressed = !is_back_pressed;
         Keyboard.release(BACK_KEY);
+        
+      }
+
+       /* buttons */
+      if(digitalRead(RED_BUTTON) == LOW and !is_back_pressed){
+        Serial.println("red");
+        delay(500);
+      }
+      if(digitalRead(BLUE_BUTTON) == LOW and !is_back_pressed){
+        Serial.println("blue");
+        delay(500);
+      }
+      if(digitalRead(GREEN_BUTTON) == LOW and !is_back_pressed){
+        Serial.println("green");
+        delay(500);
       }
 }
