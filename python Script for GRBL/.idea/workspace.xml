@@ -15,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/controller.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1246">
-              <caret line="346" column="17" lean-forward="true" selection-start-line="346" selection-start-column="17" selection-end-line="346" selection-end-column="17" />
+              <caret line="346" column="17" lean-forward="false" selection-start-line="346" selection-start-column="17" selection-end-line="346" selection-end-column="17" />
               <folding>
                 <element signature="e#48#61#0" expanded="true" />
                 <element signature="e#1020#1673#0" expanded="false" />
@@ -33,25 +33,6 @@
                 <element signature="e#5215#6163#0" expanded="false" />
                 <element signature="e#6201#6364#0" expanded="false" />
                 <element signature="e#8981#9471#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="grbl script.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/grbl script.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="107">
-              <caret line="56" column="74" lean-forward="false" selection-start-line="56" selection-start-column="74" selection-end-line="56" selection-end-column="74" />
-              <folding>
-                <element signature="e#0#13#0" expanded="true" />
-                <element signature="e#596#1253#0" expanded="false" />
-                <element signature="e#1278#1521#0" expanded="false" />
-                <element signature="e#2068#2294#0" expanded="false" />
-                <element signature="e#2331#2405#0" expanded="false" />
-                <element signature="e#3456#4041#0" expanded="false" />
-                <element signature="e#4287#4529#0" expanded="false" />
-                <element signature="e#4560#4603#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -537,13 +518,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="23" lean-forward="true" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ball.gcode">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -653,16 +627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="107">
           <caret line="56" column="74" lean-forward="false" selection-start-line="56" selection-start-column="74" selection-end-line="56" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#596#1253#0" expanded="false" />
-            <element signature="e#1278#1521#0" expanded="false" />
-            <element signature="e#2068#2294#0" expanded="false" />
-            <element signature="e#2331#2405#0" expanded="false" />
-            <element signature="e#3456#4041#0" expanded="false" />
-            <element signature="e#4287#4529#0" expanded="false" />
-            <element signature="e#4560#4603#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -698,10 +663,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="19" lean-forward="true" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controller.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1246">
-          <caret line="346" column="17" lean-forward="true" selection-start-line="346" selection-start-column="17" selection-end-line="346" selection-end-column="17" />
+          <caret line="346" column="17" lean-forward="false" selection-start-line="346" selection-start-column="17" selection-end-line="346" selection-end-column="17" />
           <folding>
             <element signature="e#48#61#0" expanded="true" />
             <element signature="e#1020#1673#0" expanded="false" />
