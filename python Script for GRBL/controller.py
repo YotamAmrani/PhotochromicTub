@@ -2,7 +2,6 @@
 """ Based on the current installation logic"""
 import serial
 import time
-import math
 import pygame
 from pygame.locals import *
 import UIcontroller as uic
@@ -348,13 +347,14 @@ def run_game(ui_controller, grbl_ser):
 
 # -------------------------------------------------------
 
+
 def main():
     # init serial connection
     grbl_ser = serial.Serial('COM5', baudrate=115200, timeout=1)
     # init pygame  main screen
     pygame.init()
-    screen = pygame.display.set_mode((800, 600))
-    # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    # screen = pygame.display.set_mode((800, 600))
+    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     ui_controller = uic.UiProperties(screen)
     # auto home
     set_screen(ui_controller)

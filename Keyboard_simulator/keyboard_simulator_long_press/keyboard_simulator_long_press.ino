@@ -19,6 +19,10 @@ const char RIGHT_KEY = 'd';
 const char UP_KEY = 'z';
 const char DOWN_KEY = 'x';
 
+const char RED_KEY = 'i';
+const char BLUE_KEY = 'o';
+const char GREEN_KEY = 'p';
+
 void setup() {
 //  Serial.begin(115200); 
   Keyboard.begin();
@@ -91,15 +95,18 @@ void loop() {
 
        /* buttons */
       if(digitalRead(RED_BUTTON) == LOW and !is_back_pressed){
-        Serial.println("red");
-        delay(500);
+//        Serial.println("red");
+        Keyboard.write(RED_KEY);
+        delay(300);
       }
       if(digitalRead(BLUE_BUTTON) == LOW and !is_back_pressed){
-        Serial.println("blue");
-        delay(500);
+//        Serial.println("blue");
+        Keyboard.write(BLUE_KEY);
+        delay(300);
       }
       if(digitalRead(GREEN_BUTTON) == LOW and !is_back_pressed){
-        Serial.println("green");
-        delay(500);
+//        Serial.println("green");
+        Keyboard.write(GREEN_KEY);
+        delay(300);
       }
 }
