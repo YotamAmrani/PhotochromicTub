@@ -27,11 +27,12 @@ FEED_RATE = 1800
 # Movement vector
 JOG_COMMAND_PREFIX_LEN = 7
 GC_MOVE_COMMAND = "$J=G91 "
-MOVEMENT_VECTOR = [0, 0, 0]
+MOVEMENT_VECTOR = [0, 0, 0, 0]
 TOGGLE_LED = False
 X_INDEX = 0
 Y_INDEX = 1
 Z_INDEX = 2
+LED_INDEX = 3
 
 
 # UI msg
@@ -43,6 +44,35 @@ MOVE_MSG = "זוז!"
 END_PRINTING_MSG = "מסיים הדפסה"
 AUTO_HOMING_MSG = "המערכת מבצעת כיול"
 CURRENT_FILE_MSG = ""
+
+
+def get_arrow_symbol():
+    global MOVEMENT_VECTOR
+    symbol = ""
+    if MOVEMENT_VECTOR[X_INDEX] and MOVEMENT_VECTOR[Y_INDEX]:
+        if X_INDEX > 0 and Y_INDEX > 0:
+            symbol = "↖"
+        elif X_INDEX > 0 and Y_INDEX < 0:
+            symbol = "↙"
+        elif X_INDEX < 0 and Y_INDEX > 0:
+            symbol = "↗"
+        elif X_INDEX < 0 and Y_INDEX < 0:
+            symbol = "↘"
+
+    elif MOVEMENT_VECTOR[X_INDEX]:
+        if X_INDEX > 0:
+            # symbol = "←"
+            symbol = chr(33)
+        else:
+            # symbol = "→"
+            symbol = chr(34)
+    elif MOVEMENT_VECTOR[Y_INDEX]:
+        if Y_INDEX > 0:
+            symbol = "↑"
+        else:
+            symbol = "↓"
+
+    return symbol
 
 
 def auto_home(grbl_ser):
@@ -88,7 +118,7 @@ def get_state(grbl_ser):
 def listen_to_movement_keys(keys):
     global TOGGLE_LED
 
-    # listen to Movement keys
+    # listen to Movement keys1
     if keys[K_a]:  # Move LEFT
         MOVEMENT_VECTOR[X_INDEX] += STEP_SIZE
     elif keys[K_d]:  # Move RIGHT
@@ -103,6 +133,7 @@ def listen_to_movement_keys(keys):
         MOVEMENT_VECTOR[Z_INDEX] -= STEP_SIZE
     if keys[K_1]:  # Turning LED on and off
         TOGGLE_LED = not TOGGLE_LED
+        # MOVEMENT_VECTOR[LED_INDEX] = LED_POWER
 
 
 def listen_to_print_buttons(keys):
@@ -142,6 +173,7 @@ def apply_movement():
     GC_MOVE_COMMAND += " X" + str(MOVEMENT_VECTOR[X_INDEX])
     GC_MOVE_COMMAND += " Y" + str(MOVEMENT_VECTOR[Y_INDEX])
     GC_MOVE_COMMAND += " Z" + str(MOVEMENT_VECTOR[Z_INDEX])
+    # GC_MOVE_COMMAND += " M3 S" + str(LED_POWER)
 
 
 def apply_led_toggle():
@@ -174,7 +206,7 @@ def reset_command_values():
     global GC_MOVE_COMMAND
     global IS_JOYSTICK_IDLE
     GC_MOVE_COMMAND = "$J=G91 "
-    MOVEMENT_VECTOR = [0, 0, 0]
+    MOVEMENT_VECTOR = [0, 0, 0, 0]
     IS_JOYSTICK_IDLE = True
 
 
@@ -264,7 +296,7 @@ def run_game(ui_controller, grbl_ser):
         listen_to_movement_keys(keys)       # Listen to movement keys
 
         # Apply movement - in case there was a change
-        if MOVEMENT_VECTOR[X_INDEX] or MOVEMENT_VECTOR[Y_INDEX] or MOVEMENT_VECTOR[Z_INDEX] or TOGGLE_LED is True:
+        if MOVEMENT_VECTOR[X_INDEX] or MOVEMENT_VECTOR[Y_INDEX] or MOVEMENT_VECTOR[Z_INDEX] or MOVEMENT_VECTOR[LED_INDEX] or TOGGLE_LED is True:
             last_time_stamp = time.time()
             if PRINT_MODE:
                 ui_controller.clean_text()
@@ -280,7 +312,7 @@ def run_game(ui_controller, grbl_ser):
             else:
                 apply_movement()        # Apply movement
                 ui_controller.set_instruction(uic.CLEAN_MSG)
-                ui_controller.set_instruction(MOVE_MSG)
+                ui_controller.set_instruction(get_arrow_symbol(), font_size=36, font_file_path="C:\Windows\Fonts\WINGDNG3.TTF")
                 if TOGGLE_LED:          # Apply led changes
                     apply_led_toggle()
                     ui_controller.set_instruction(uic.CLEAN_MSG)
