@@ -132,11 +132,10 @@ def listen_to_movement_keys(keys):
     elif keys[K_x]:  # Move DOWN
         MOVEMENT_VECTOR[Z_INDEX] -= STEP_SIZE
 
-    if keys[K_1] != LED_PREV_STATE:  # Turning LED on and off
-        if LED_PREV_STATE == LED_POWER:
-            MOVEMENT_VECTOR[LED_INDEX] = 0
-        else:
-            MOVEMENT_VECTOR[LED_INDEX] = LED_POWER
+    if keys[K_1]:  # Turning LED on and off
+        MOVEMENT_VECTOR[LED_INDEX] = LED_POWER
+    else:
+        MOVEMENT_VECTOR[LED_INDEX] = 0
 
 
 def listen_to_print_buttons(keys):

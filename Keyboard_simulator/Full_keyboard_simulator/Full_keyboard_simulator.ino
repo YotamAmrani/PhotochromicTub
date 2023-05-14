@@ -138,7 +138,6 @@ void loop() {
         is_up_pressed = !is_up_pressed;
         Keyboard.press(UP_KEY);
         delay(FIRST_PRESS_DELAY);
-        Serial.println("up");
       }
      else if(digitalRead(Z_UP_PIN) == HIGH and is_up_pressed){
         is_up_pressed = !is_up_pressed;
@@ -149,7 +148,6 @@ void loop() {
         is_down_pressed = !is_down_pressed;
         Keyboard.press(DOWN_KEY);
         delay(FIRST_PRESS_DELAY);
-        Serial.println("up");
       }
      else if(digitalRead(Z_DOWN_PIN) == HIGH and is_down_pressed){
         is_down_pressed = !is_down_pressed;
