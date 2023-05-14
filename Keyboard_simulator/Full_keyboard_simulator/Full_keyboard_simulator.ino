@@ -89,7 +89,7 @@ void plottingControlInput(){
   }
 
 void loop() {
-    plottingControlInput();
+//    plottingControlInput();
     /* Move right */
      if(analogRead(X_AXIS_PIN) > (RIGHT_VALUE - NOISE) and analogRead(X_AXIS_PIN) < (RIGHT_VALUE + NOISE) and  !is_right_pressed){
         is_right_pressed = !is_right_pressed;
