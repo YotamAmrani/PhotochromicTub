@@ -10,7 +10,7 @@ PRINT_MODE = False
 
 
 # LED configurations
-TOGGLE_LED = False
+LED_PREV_STATE = False
 LED_MODE = False
 LED_POWER = 1000
 BUTTON_DELAY = 0.01
@@ -229,7 +229,7 @@ while True:
         elif keys[K_x]:  # Move DOWN
             MOVEMENT_VECTOR[Z_INDEX] -= STEP_SIZE
         if keys[K_1]:  # Turning LED on and off
-            TOGGLE_LED = not TOGGLE_LED
+            LED_PREV_STATE = not LED_PREV_STATE
 
         if PREV_MOVEMENT_VECTOR != MOVEMENT_VECTOR:
             print(PREV_MOVEMENT_VECTOR, MOVEMENT_VECTOR)
@@ -244,14 +244,14 @@ while True:
         print(response)
 
     # Apply movement
-    if MOVEMENT_VECTOR[X_INDEX] or MOVEMENT_VECTOR[Y_INDEX] or MOVEMENT_VECTOR[Z_INDEX] or TOGGLE_LED is True:
+    if MOVEMENT_VECTOR[X_INDEX] or MOVEMENT_VECTOR[Y_INDEX] or MOVEMENT_VECTOR[Z_INDEX] or LED_PREV_STATE is True:
 
         # Apply axis changes
         apply_movement()
         # Toggle led state
-        if TOGGLE_LED:
+        if LED_PREV_STATE:
             apply_led_toggle()
-            TOGGLE_LED = False
+            LED_PREV_STATE = False
         # Set Feed rate
         set_feed_rate(FEED_RATE)
         send_move()

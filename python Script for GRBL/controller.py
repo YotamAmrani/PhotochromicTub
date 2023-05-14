@@ -11,7 +11,7 @@ PRINT_MODE = False
 IS_JOYSTICK_IDLE = False
 CURRENT_LINE_RESULT = "ok"
 
-PENDING_TIME = 10
+PENDING_TIME = 60
 LAST_TIME_STAMP = 0
 FILES_PATHS = ["drawings/spiral.gcode", "drawings/square.gcode", "drawings/two spirals.gcode"]
 FILES_DISPLAY_MSG = ["ספירלה", "ריבוע", "שתי ספירלות"]
@@ -28,7 +28,7 @@ FEED_RATE = 1800
 JOG_COMMAND_PREFIX_LEN = 7
 GC_MOVE_COMMAND = "$J=G91 "
 MOVEMENT_VECTOR = [0, 0, 0, 0]
-TOGGLE_LED = False
+LED_PREV_STATE = 0
 X_INDEX = 0
 Y_INDEX = 1
 Z_INDEX = 2
@@ -116,7 +116,7 @@ def get_state(grbl_ser):
 
 
 def listen_to_movement_keys(keys):
-    global TOGGLE_LED
+    global LED_PREV_STATE
 
     # listen to Movement keys1
     if keys[K_a]:  # Move LEFT
@@ -131,9 +131,12 @@ def listen_to_movement_keys(keys):
         MOVEMENT_VECTOR[Z_INDEX] += STEP_SIZE
     elif keys[K_x]:  # Move DOWN
         MOVEMENT_VECTOR[Z_INDEX] -= STEP_SIZE
-    if keys[K_1]:  # Turning LED on and off
-        TOGGLE_LED = not TOGGLE_LED
-        # MOVEMENT_VECTOR[LED_INDEX] = LED_POWER
+
+    if keys[K_1] != LED_PREV_STATE:  # Turning LED on and off
+        if LED_PREV_STATE == LED_POWER:
+            MOVEMENT_VECTOR[LED_INDEX] = 0
+        else:
+            MOVEMENT_VECTOR[LED_INDEX] = LED_POWER
 
 
 def listen_to_print_buttons(keys):
@@ -153,11 +156,13 @@ def listen_to_print_buttons(keys):
 def listen_to_sys_keys(keys, grbl_ser, ui_controller):
     global PRINT_MODE
     global QUIT_GAME
+    last_time_stamp = time.time()
     if keys[K_0]:
         ui_controller.set_header(AUTO_HOMING_MSG)
         ui_controller.set_instruction(PLEASE_WAIT_MSG)
         pygame.display.update()
         auto_home(grbl_ser)
+        last_time_stamp += 15
     if keys[K_l]:
         pass
     if keys[K_q]:
@@ -165,6 +170,7 @@ def listen_to_sys_keys(keys, grbl_ser, ui_controller):
             print("stopped in the middle!")
             exit_print_mode()
         QUIT_GAME = True
+    return last_time_stamp
 
 
 def apply_movement():
@@ -173,7 +179,7 @@ def apply_movement():
     GC_MOVE_COMMAND += " X" + str(MOVEMENT_VECTOR[X_INDEX])
     GC_MOVE_COMMAND += " Y" + str(MOVEMENT_VECTOR[Y_INDEX])
     GC_MOVE_COMMAND += " Z" + str(MOVEMENT_VECTOR[Z_INDEX])
-    # GC_MOVE_COMMAND += " M3 S" + str(LED_POWER)
+    GC_MOVE_COMMAND += " M3 S" + str(MOVEMENT_VECTOR[LED_INDEX])
 
 
 def apply_led_toggle():
@@ -197,7 +203,6 @@ def send_move(grbl_ser):
     global GC_MOVE_COMMAND
     grbl_ser.write(GC_MOVE_COMMAND.encode())
     response = grbl_ser.readline().decode()
-    # print(GC_MOVE_COMMAND)
     # print(response)
 
 
@@ -205,7 +210,10 @@ def reset_command_values():
     global MOVEMENT_VECTOR
     global GC_MOVE_COMMAND
     global IS_JOYSTICK_IDLE
+    global LED_PREV_STATE
     GC_MOVE_COMMAND = "$J=G91 "
+    LED_PREV_STATE = MOVEMENT_VECTOR[LED_INDEX]
+    # print("reset values!")
     MOVEMENT_VECTOR = [0, 0, 0, 0]
     IS_JOYSTICK_IDLE = True
 
@@ -272,14 +280,14 @@ def set_screen(ui_controller):
 
 def run_game(ui_controller, grbl_ser):
     global PRINT_MODE
-    global TOGGLE_LED
+    global LED_PREV_STATE
     global FILES_DISPLAY_MSG
     global CURRENT_FILE_MSG
     global CURRENT_FILE_PATH
     global CURRENT_FILE_PATH_INDEX
     global QUIT_GAME
 
-    TOGGLE_LED = False
+    # LED_PREV_STATE = False
     last_time_stamp = time.time()
 
     while not QUIT_GAME:
@@ -290,13 +298,14 @@ def run_game(ui_controller, grbl_ser):
         if keys[K_c]:
             ui_controller.clean_text()
 
-        listen_to_sys_keys(keys, grbl_ser, ui_controller)            # Listen to system keys (i.e. quit, etc..)
+        last_time_stamp = listen_to_sys_keys(keys, grbl_ser, ui_controller)  # Listen to system keys (i.e. quit, etc..)
         if not CURRENT_FILE_PATH:           # Listen to print keys
             listen_to_print_buttons(keys)
         listen_to_movement_keys(keys)       # Listen to movement keys
 
         # Apply movement - in case there was a change
-        if MOVEMENT_VECTOR[X_INDEX] or MOVEMENT_VECTOR[Y_INDEX] or MOVEMENT_VECTOR[Z_INDEX] or MOVEMENT_VECTOR[LED_INDEX] or TOGGLE_LED is True:
+        if MOVEMENT_VECTOR[X_INDEX] or MOVEMENT_VECTOR[Y_INDEX] or MOVEMENT_VECTOR[Z_INDEX] or MOVEMENT_VECTOR[LED_INDEX]!= LED_PREV_STATE:
+            # print(MOVEMENT_VECTOR)
             last_time_stamp = time.time()
             if PRINT_MODE:
                 ui_controller.clean_text()
@@ -313,23 +322,28 @@ def run_game(ui_controller, grbl_ser):
                 apply_movement()        # Apply movement
                 ui_controller.set_instruction(uic.CLEAN_MSG)
                 ui_controller.set_instruction(get_arrow_symbol(), font_size=36, font_file_path="C:\Windows\Fonts\WINGDNG3.TTF")
-                if TOGGLE_LED:          # Apply led changes
-                    apply_led_toggle()
+                if MOVEMENT_VECTOR[LED_INDEX] != LED_PREV_STATE:          # Apply led changes
+                    # apply_led_toggle()
                     ui_controller.set_instruction(uic.CLEAN_MSG)
-                    if LED_MODE:
+                    if MOVEMENT_VECTOR[LED_INDEX] and not LED_PREV_STATE:
                         ui_controller.set_instruction("הדלקת נורה!")
-                    else:
+                    elif not MOVEMENT_VECTOR[LED_INDEX] and LED_PREV_STATE:
                         ui_controller.set_instruction("כיבית נורה!")
-                    TOGGLE_LED = False
+                    # LED_PREV_STATE = False
                 set_feed_rate()         # Apply feed rate
                 send_move(grbl_ser)             # Send GCODE command
                 pygame.display.update()
+
             reset_command_values()  # reset G-code values for the next command
+
 
         # clear the command buffer when joystick is idle (only once)
         elif IS_JOYSTICK_IDLE:
             global IS_JOYSTICK_IDLE
             IS_JOYSTICK_IDLE = False
+            # if not MOVEMENT_VECTOR[LED_INDEX] and LED_PREV_STATE:
+            #     apply_movement()
+            #     print("turning off")
             # clear_commands_queue(grbl_ser)
 
         elif CURRENT_FILE_PATH:  # user or system chose file to print
@@ -354,8 +368,11 @@ def run_game(ui_controller, grbl_ser):
             time.sleep(1)
 
         if time.time() - last_time_stamp > PENDING_TIME and not PRINT_MODE:
-            # ui_controller.set_instruction(uic.CLEAN_MSG)
-            # ui_controller.set_instruction("עבר הזמן!")
+            ui_controller.set_instruction(uic.CLEAN_MSG)
+            pygame.display.update()
+            ui_controller.set_instruction("עבר הזמן!")
+            pygame.display.update()
+            print("Time is up!")
             CURRENT_FILE_PATH_INDEX += 1
             CURRENT_FILE_PATH = FILES_PATHS[CURRENT_FILE_PATH_INDEX % len(FILES_PATHS)]
             CURRENT_FILE_MSG = FILES_DISPLAY_MSG[CURRENT_FILE_PATH_INDEX % len(FILES_DISPLAY_MSG)]
@@ -385,8 +402,8 @@ def main():
     grbl_ser = serial.Serial('COM5', baudrate=115200, timeout=1)
     # init pygame  main screen
     pygame.init()
-    # screen = pygame.display.set_mode((800, 600))
-    screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    screen = pygame.display.set_mode((800, 600))
+    # screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
     ui_controller = uic.UiProperties(screen)
     # auto home
     set_screen(ui_controller)
