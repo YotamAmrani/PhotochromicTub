@@ -23,7 +23,7 @@
 #define FORWARD_VALUE 855
 #define BACK_VALUE 0
 #define LED_ON_VALUE 0
-#define NOISE 20
+#define NOISE 50
 
 
 /** DIRECTIONS KEYS*/
@@ -90,6 +90,19 @@ void plottingControlInput(){
 
 void loop() {
 //    plottingControlInput();
+      /* control LED */
+     if(analogRead(LED_CONTROL_PIN) > (LED_ON_VALUE - NOISE) and analogRead(LED_CONTROL_PIN) < (LED_ON_VALUE + NOISE) and  !is_led_pressed){
+        Serial.println("led is on!");
+        is_led_pressed = !is_led_pressed;
+        Keyboard.press(LED_KEY);
+        delay(FIRST_PRESS_DELAY);
+      }
+     else if(analogRead(LED_CONTROL_PIN) > (IDLE_VALUE - NOISE) and analogRead(LED_CONTROL_PIN) < (IDLE_VALUE + NOISE) and is_led_pressed){
+        is_led_pressed = !is_led_pressed;
+        Keyboard.release(LED_KEY);
+      }
+
+
     /* Move right */
      if(analogRead(X_AXIS_PIN) > (RIGHT_VALUE - NOISE) and analogRead(X_AXIS_PIN) < (RIGHT_VALUE + NOISE) and  !is_right_pressed){
         is_right_pressed = !is_right_pressed;
@@ -155,16 +168,7 @@ void loop() {
       }
 
 
-      /* control LED */
-     if(analogRead(LED_CONTROL_PIN) > (LED_ON_VALUE - NOISE) and analogRead(LED_CONTROL_PIN) < (LED_ON_VALUE + NOISE) and  !is_led_pressed){
-        is_led_pressed = !is_led_pressed;
-        Keyboard.press(LED_KEY);
-        delay(FIRST_PRESS_DELAY);
-      }
-     else if(analogRead(LED_CONTROL_PIN) > (IDLE_VALUE - NOISE) and analogRead(LED_CONTROL_PIN) < (IDLE_VALUE + NOISE) and is_led_pressed){
-        is_led_pressed = !is_led_pressed;
-        Keyboard.release(LED_KEY);
-      }
+
        /* buttons */
       if(digitalRead(RED_BUTTON) == LOW and !is_back_pressed){
         Keyboard.write(RED_KEY);

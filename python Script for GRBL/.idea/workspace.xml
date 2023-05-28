@@ -14,29 +14,37 @@
       <file leaf-file-name="controller.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-781">
-              <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+            <state relative-caret-position="17">
+              <caret line="153" column="56" lean-forward="false" selection-start-line="153" selection-start-column="56" selection-end-line="153" selection-end-column="56" />
               <folding>
                 <element signature="e#48#61#0" expanded="true" />
-                <element signature="e#1024#1718#0" expanded="false" />
-                <element signature="e#1750#2403#0" expanded="false" />
-                <element signature="e#2445#2533#0" expanded="false" />
-                <element signature="e#2565#2790#0" expanded="false" />
-                <element signature="e#3538#3921#0" expanded="false" />
-                <element signature="e#3983#4466#0" expanded="false" />
-                <element signature="e#4495#4789#0" expanded="false" />
-                <element signature="e#4820#5046#0" expanded="false" />
-                <element signature="e#5074#5148#0" expanded="false" />
-                <element signature="e#5348#5623#0" expanded="false" />
-                <element signature="e#5666#5832#0" expanded="false" />
-                <element signature="e#5862#6203#0" expanded="false" />
-                <element signature="e#6244#7192#0" expanded="false" />
-                <element signature="e#7230#7393#0" expanded="false" />
-                <element signature="e#10439#10929#0" expanded="false" />
-                <element signature="e#11013#11231#0" expanded="false" />
-                <element signature="e#11321#11962#0" expanded="false" />
-                <element signature="e#12063#12356#0" expanded="false" />
+                <element signature="e#1062#1756#0" expanded="false" />
+                <element signature="e#1788#2441#0" expanded="false" />
+                <element signature="e#2483#2571#0" expanded="false" />
+                <element signature="e#2603#2828#0" expanded="false" />
+                <element signature="e#4041#4524#0" expanded="false" />
+                <element signature="e#4553#4847#0" expanded="false" />
+                <element signature="e#4878#5104#0" expanded="false" />
+                <element signature="e#5433#5708#0" expanded="false" />
+                <element signature="e#5751#5917#0" expanded="false" />
+                <element signature="e#5947#6288#0" expanded="false" />
+                <element signature="e#7329#7492#0" expanded="false" />
+                <element signature="e#10538#11028#0" expanded="false" />
+                <element signature="e#11112#11330#0" expanded="false" />
+                <element signature="e#11420#12061#0" expanded="false" />
+                <element signature="e#12162#12455#0" expanded="false" />
+                <element signature="e#12581#13301#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="initialize.gcode" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/initialize.gcode">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,7 +133,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,11 +141,16 @@
               <item name="python Script for GRBL" type="b2602c69:ProjectViewProjectNode" />
               <item name="python Script for GRBL" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="python Script for GRBL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="python Script for GRBL" type="462c0819:PsiDirectoryNode" />
+              <item name="drawings" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -286,16 +299,16 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09254499" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.113753214" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2716216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2716216" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32972974" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32969153" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -409,13 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/initialize.gcode">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="19" lean-forward="false" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2017.2/system/python_stubs/-190940974/pygame/rect.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1105">
@@ -441,40 +447,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="46" column="8" lean-forward="false" selection-start-line="46" selection-start-column="8" selection-end-line="46" selection-end-column="8" />
-          <folding>
-            <element signature="e#496#1109#0" expanded="false" />
-            <element signature="e#1147#1210#0" expanded="false" />
-            <element signature="e#1288#1688#0" expanded="false" />
-            <element signature="e#2639#2705#0" expanded="false" />
-            <element signature="e#2745#4892#0" expanded="false" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/initialize.gcode">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="7" lean-forward="false" selection-start-line="17" selection-start-column="7" selection-end-line="17" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-781">
-          <caret line="139" column="0" lean-forward="true" selection-start-line="139" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="153" column="56" lean-forward="false" selection-start-line="153" selection-start-column="56" selection-end-line="153" selection-end-column="56" />
           <folding>
             <element signature="e#48#61#0" expanded="true" />
-            <element signature="e#1024#1718#0" expanded="false" />
-            <element signature="e#1750#2403#0" expanded="false" />
-            <element signature="e#2445#2533#0" expanded="false" />
-            <element signature="e#2565#2790#0" expanded="false" />
-            <element signature="e#3538#3921#0" expanded="false" />
-            <element signature="e#3983#4466#0" expanded="false" />
-            <element signature="e#4495#4789#0" expanded="false" />
-            <element signature="e#4820#5046#0" expanded="false" />
-            <element signature="e#5074#5148#0" expanded="false" />
-            <element signature="e#5348#5623#0" expanded="false" />
-            <element signature="e#5666#5832#0" expanded="false" />
-            <element signature="e#5862#6203#0" expanded="false" />
-            <element signature="e#6244#7192#0" expanded="false" />
-            <element signature="e#7230#7393#0" expanded="false" />
-            <element signature="e#10439#10929#0" expanded="false" />
-            <element signature="e#11013#11231#0" expanded="false" />
-            <element signature="e#11321#11962#0" expanded="false" />
-            <element signature="e#12063#12356#0" expanded="false" />
+            <element signature="e#1062#1756#0" expanded="false" />
+            <element signature="e#1788#2441#0" expanded="false" />
+            <element signature="e#2483#2571#0" expanded="false" />
+            <element signature="e#2603#2828#0" expanded="false" />
+            <element signature="e#4041#4524#0" expanded="false" />
+            <element signature="e#4553#4847#0" expanded="false" />
+            <element signature="e#4878#5104#0" expanded="false" />
+            <element signature="e#5433#5708#0" expanded="false" />
+            <element signature="e#5751#5917#0" expanded="false" />
+            <element signature="e#5947#6288#0" expanded="false" />
+            <element signature="e#7329#7492#0" expanded="false" />
+            <element signature="e#10538#11028#0" expanded="false" />
+            <element signature="e#11112#11330#0" expanded="false" />
+            <element signature="e#11420#12061#0" expanded="false" />
+            <element signature="e#12162#12455#0" expanded="false" />
+            <element signature="e#12581#13301#0" expanded="false" />
           </folding>
         </state>
       </provider>

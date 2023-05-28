@@ -19,10 +19,13 @@ CURRENT_FILE_PATH_INDEX = 0
 CURRENT_FILE_PATH = ""
 FILE_TO_PRINT = None
 
-STEP_SIZE = 0.3
+# STEP_SIZE = 0.6
+FEED_RATE = 6500
 LED_MODE = False
 LED_POWER = 1000
-FEED_RATE = 1800
+# FEED_RATE = 1800
+STEP_SIZE = 0.3
+
 
 # Movement vector
 JOG_COMMAND_PREFIX_LEN = 7
@@ -120,9 +123,9 @@ def listen_to_movement_keys(keys):
 
     # listen to Movement keys1
     if keys[K_a]:  # Move LEFT
-        MOVEMENT_VECTOR[X_INDEX] += STEP_SIZE
-    elif keys[K_d]:  # Move RIGHT
         MOVEMENT_VECTOR[X_INDEX] -= STEP_SIZE
+    elif keys[K_d]:  # Move RIGHT
+        MOVEMENT_VECTOR[X_INDEX] += STEP_SIZE
     if keys[K_w]:  # Move FORWARD
         MOVEMENT_VECTOR[Y_INDEX] += STEP_SIZE
     elif keys[K_s]:  # Move BACK
@@ -145,7 +148,7 @@ def listen_to_print_buttons(keys):
         CURRENT_FILE_PATH = "drawings/spiral.gcode"
         CURRENT_FILE_MSG = "ספירלה"
     elif keys[K_o]:
-        CURRENT_FILE_PATH = "drawings/square.gcode"
+        CURRENT_FILE_PATH = "drawings/3edges_216degrees_10floors.gcode"
         CURRENT_FILE_MSG = "ריבוע"
     elif keys[K_p]:
         CURRENT_FILE_PATH = "drawings/two spirals.gcode"
@@ -203,6 +206,7 @@ def send_move(grbl_ser):
     grbl_ser.write(GC_MOVE_COMMAND.encode())
     response = grbl_ser.readline().decode()
     # print(response)
+    print(GC_MOVE_COMMAND)
 
 
 def reset_command_values():
@@ -240,7 +244,7 @@ def exit_print_mode():
     print("-- finished printing file: " + CURRENT_FILE_PATH)
 
 
-def print_current_file(grbl_ser):
+def print_current_file(grbl_ser,delay=0.3):
     global CURRENT_FILE_PATH
     global PRINT_MODE
     global FILE_TO_PRINT
@@ -258,7 +262,7 @@ def print_current_file(grbl_ser):
         # clear the current file, exit print mode
         exit_print_mode()
     else:
-        time.sleep(1)
+        time.sleep(delay)
         print(line.strip())
         grbl_ser.write(line.encode())
         CURRENT_LINE_RESULT = grbl_ser.readline()
